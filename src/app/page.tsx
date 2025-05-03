@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { FoodCard } from '@/components/FoodCard'
 import { OrderForm } from '@/components/OrderForm'
 import { CartItem, FoodItem } from '@/types/types'
+import { toast } from 'sonner'
 
 const foodMenu = [
   {
@@ -53,11 +54,13 @@ export default function Home() {
   const [cart, setCart] = useState<CartItem[]>([])
 
   const addToCart = (item: FoodItem) => {
+    toast.success(`Pedido agregado - ${item.name}`)
     setCart(prev => {
       const found = prev.find(i => i.id === item.id)
       if (found) {
         return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i)
       }
+
       return [...prev, { ...item, quantity: 1 }]
     })
   }
@@ -67,7 +70,13 @@ export default function Home() {
       <div className='flex flex-col-reverse md:flex-row gap-6 justify-between'>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 sm:gap-6 md:w-[80%]">
           {foodMenu.map(item => (
-            <FoodCard key={item.id} item={item} onAdd={() => addToCart(item)} />
+            <FoodCard
+              key={item.id}
+              item={item}
+              onAdd={() => addToCart(item)}
+              count={cart.find(i => i.id === item.id)?.quantity || 0}
+            />
+
           ))}
         </div>
 

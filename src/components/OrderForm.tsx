@@ -56,6 +56,11 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
         } else {
             toast.success('¡Pedido enviado correctamente!')
             setIsModalOpen(false)
+            setCart([])
+            setName('')
+            setPhone('')
+            setDeliveryDate('')
+            setDeliveryTime('')
         }
     }
 
@@ -90,20 +95,20 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                                     <div className="flex border border-orange-300 rounded-md overflow-hidden">
                                         <Button
                                             onClick={() => updateCartItem(item.id, -1)}
-                                            className="py-1 text-sm bg-orange-50 hover:bg-orange-100 text-orange-700"
+                                            className="py-1 cursor-pointer text-sm bg-orange-50 hover:bg-orange-100 text-orange-700"
                                         >
                                             <Minus />
                                         </Button>
                                         <Button
                                             onClick={() => updateCartItem(item.id, 1)}
-                                            className="py-1 text-sm bg-orange-50 hover:bg-orange-100 text-orange-700"
+                                            className="py-1 cursor-pointer text-sm bg-orange-50 hover:bg-orange-100 text-orange-700"
                                         >
                                             <Plus />
                                         </Button>
                                     </div>
                                     <Button
                                         onClick={() => removeItem(item.id)}
-                                        className="bg-red-500 hover:bg-red-600 text-white text-xs"
+                                        className="cursor-pointer bg-red-500 hover:bg-red-600 text-white text-xs"
                                     >
                                         <Trash2 />
                                     </Button>
@@ -181,15 +186,28 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
         </div>
     )
 
+    const [isBottom, setIsBottom] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const nearBottom =
+                window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
+            setIsBottom(nearBottom);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     return (
         <>
             {/* Móvil: Botón flotante y modal */}
-            <div className="sm:hidden fixed bottom-4 right-4 z-50">
+            <div className={`sm:hidden fixed duration-300 ${isBottom ? "bottom-16" : "bottom-4"} right-4 z-50`}>
                 <Button
                     onClick={() => setIsModalOpen(true)}
-                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full px-6 py-3 shadow-lg"
+                    className="bg-orange-400 hover:bg-orange-600 text-white font-bold rounded-md px-6 py-3 shadow-lg"
                 >
-                    <ShoppingCart /> Mi Pedido {cart.length > 0 ? cart.length : ''}
+                    <ShoppingCart /> {cart.length > 1 ? 'Mis Pedidos' : 'Mi Pedido'} {cart.length > 0 ? cart.length : ''}
                 </Button>
             </div>
 

@@ -7,7 +7,8 @@ import { FoodItem } from "@/types/types"
 import { ShoppingCart } from "lucide-react"
 import Image from "next/image"
 
-export function FoodCard({ item, onAdd }: { item: FoodItem, onAdd: () => void }) {
+export function FoodCard({ item, onAdd, count = 0 }: { item: FoodItem, onAdd: () => void, count?: number }) {
+
     return (
         <Card className="transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl cursor-pointer py-0 bg-white rounded-none sm:rounded-lg border-0">
 
@@ -40,10 +41,17 @@ export function FoodCard({ item, onAdd }: { item: FoodItem, onAdd: () => void })
                         <p className="text-lg font-bold text-orange-800">{formatCOP(item.price)}</p>
                         <Button
                             onClick={onAdd}
-                            className="bg-orange-500 cursor-pointer text-white py-2 px-6 rounded-md hover:bg-orange-600 transition-all duration-300 transform hover:scale-105"
+                            className="bg-orange-500 cursor-pointer text-white py-2 px-6 rounded-md hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
                         >
-                            <ShoppingCart /> Agregar
+                            <ShoppingCart />
+                            Agregar
+                            {count > 0 && (
+                                <span className="bg-white text-orange-600 font-semibold w-5 h-5 flex items-center justify-center px-2 rounded-sm text-xs">
+                                    {count}
+                                </span>
+                            )}
                         </Button>
+
                     </div>
                 </div>
             </div>
