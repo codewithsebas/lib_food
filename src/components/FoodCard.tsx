@@ -1,0 +1,52 @@
+'use client'
+
+import { Button } from "@/components/ui/button"
+import { Card, CardTitle } from "@/components/ui/card"
+import { formatCOP } from "@/lib/utils/formatCurrency"
+import { FoodItem } from "@/types/types"
+import { ShoppingCart } from "lucide-react"
+import Image from "next/image"
+
+export function FoodCard({ item, onAdd }: { item: FoodItem, onAdd: () => void }) {
+    return (
+        <Card className="transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl cursor-pointer py-0 bg-white rounded-none sm:rounded-lg border-0">
+
+            <div className="flex flex-col justify-between h-full">
+                <div className="relative overflow-hidden sm:rounded-lg sm:rounded-b-none max-h-60">
+
+                    <Image
+                        width={10000}
+                        height={10000}
+                        priority
+                        src={item.imageUrl}
+                        alt={item.name}
+                        className="w-full h-full object-cover transform transition-all duration-300 hover:scale-105"
+                    />
+                </div>
+                <div className="p-4">
+                    <CardTitle className="text-2xl font-semibold text-orange-600">{item.name}</CardTitle>
+                    <p className="text-gray-600 text-sm mb-2">{item.description}</p>
+
+                    <div className="text-sm font-medium text-orange-700">
+                        <span className="block mb-2 font-semibold">Ingredientes:</span>
+                        <ul className="list-disc pl-5 grid grid-rows-4 grid-flow-col text-gray-600">
+                            {item.ingredients.map((ingredient, index) => (
+                                <li key={index}>{ingredient}</li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="flex justify-between items-center mt-4">
+                        <p className="text-lg font-bold text-orange-800">{formatCOP(item.price)}</p>
+                        <Button
+                            onClick={onAdd}
+                            className="bg-orange-500 cursor-pointer text-white py-2 px-6 rounded-md hover:bg-orange-600 transition-all duration-300 transform hover:scale-105"
+                        >
+                            <ShoppingCart /> Agregar
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </Card>
+    )
+}
