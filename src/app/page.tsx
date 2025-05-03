@@ -10,7 +10,7 @@ const foodMenu = [
   {
     id: 1,
     name: 'Hamburguesa Clásica',
-    price: 10000,
+    price: 11000,
     description: 'Deliciosa hamburguesa con carne jugosa, queso cheddar, lechuga fresca y tomate.',
     ingredients: ['Carne', 'Queso cheddar', 'Lechuga', 'Tomate', 'Pan'],
     imageUrl: 'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -20,7 +20,7 @@ const foodMenu = [
   {
     id: 2,
     name: 'Hamburguesa BBQ',
-    price: 12500,
+    price: 13500,
     description: 'Jugosa hamburguesa con queso derretido, cebolla caramelizada y salsa BBQ.',
     ingredients: ['Carne', 'Queso', 'Cebolla caramelizada', 'Salsa BBQ', 'Pan'],
     imageUrl: 'https://images.unsplash.com/photo-1728776448564-761583fc8bfb?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -30,7 +30,7 @@ const foodMenu = [
   {
     id: 3,
     name: 'Hamburguesa con huevo y aguacate',
-    price: 10000,
+    price: 11000,
     description: 'Hamburguesa con huevo frito, aguacate cremoso y queso fundido.',
     ingredients: ['Carne', 'Huevo', 'Aguacate', 'Queso', 'Pan'],
     imageUrl: 'https://images.unsplash.com/photo-1609796632543-65cdda96651c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -40,7 +40,7 @@ const foodMenu = [
   {
     id: 4,
     name: 'Maracumango',
-    price: 6000,
+    price: 8000,
     description: 'Refrescante bebida de mango y maracuyá, perfecta para el calor.',
     ingredients: ['Mango', 'Maracuyá', 'Azúcar', 'Hielo', 'Agua o soda'],
     imageUrl: 'https://images.unsplash.com/photo-1574891548685-3e13f565419a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -50,10 +50,30 @@ const foodMenu = [
   {
     id: 5,
     name: 'Fresa con leche',
-    price: 7000,
+    price: 9000,
     description: 'Bebida cremosa de fresa natural con leche y un toque dulce.',
     ingredients: ['Fresas', 'Leche', 'Azúcar', 'Hielo'],
     imageUrl: 'https://images.unsplash.com/photo-1611928237590-087afc90c6fd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    showNotes: false,
+    notes: ''
+  },
+  {
+    id: 6,
+    name: 'Licuado de Naranja',
+    price: 8000,
+    description: 'Delicioso licuado cremoso de naranja natural con leche, una mezcla suave y refrescante.',
+    ingredients: ['Naranja', 'Leche', 'Azúcar', 'Hielo'],
+    imageUrl: 'https://images.unsplash.com/photo-1586115294533-e8abf3fc2fe0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3',
+    showNotes: false,
+    notes: ''
+  },
+  {
+    id: 7,
+    name: 'Jugo Tropical',
+    price: 8500,
+    description: 'Refrescante jugo tropical con una mezcla de piña, mango y un toque de maracuyá.',
+    ingredients: ['Piña', 'Mango', 'Maracuyá', 'Azúcar', 'Agua', 'Hielo'],
+    imageUrl: 'https://images.unsplash.com/photo-1584812189250-3b1ed5810e9c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3',
     showNotes: false,
     notes: ''
   }
