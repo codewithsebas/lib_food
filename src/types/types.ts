@@ -5,11 +5,13 @@ export interface FoodItem {
     description: string
     ingredients: string[]
     imageUrl: string
+    notes: string
   }
   
   
   export type CartItem = FoodItem & {
     quantity: number
+    showNotes: boolean
   }
 
  export interface OrderFormProps {

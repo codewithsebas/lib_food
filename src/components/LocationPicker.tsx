@@ -2,6 +2,7 @@ import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 import { useState, useCallback, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { LoaderCircle } from 'lucide-react'
+import { toast } from 'sonner'
 
 const containerStyle = {
     width: '100%',
@@ -70,7 +71,7 @@ export function LocationPicker({
                 fetchAddress(latitude, longitude)
             },
             (error) => {
-                console.error('No se pudo obtener la ubicación:', error)
+                toast.error(error?.message || 'No se pudo obtener tu ubicación')
             }
         )
     }, [setLocation]) // Only recreate the function if setLocation changes

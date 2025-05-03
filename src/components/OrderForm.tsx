@@ -21,11 +21,13 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-            ({ coords }) => setLocation(`${coords.latitude},${coords.longitude}`),
-            () => toast.error('No se pudo obtener tu ubicación')
-        )
-    }, [])
+        if (typeof window !== 'undefined' && 'geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                ({ coords }) => setLocation(`${coords.latitude},${coords.longitude}`),
+                () => toast.error('No se pudo obtener tu ubicación')
+            );
+        }
+    }, []);
 
     const updateCartItem = (itemId: number, delta: number) => {
         setCart((prev) =>
@@ -42,6 +44,11 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
     }
 
     const handleSubmit = async () => {
+        if (!name || !phone || !location || !deliveryDate || !deliveryTime || cart.length === 0) {
+            toast.error('Por favor completa todos los campos');
+            return;
+        }
+
         const { error } = await supabase.from('orders').insert({
             name,
             phone,
@@ -49,20 +56,21 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
             items: cart,
             date: deliveryDate,
             time: deliveryTime
-        })
+        });
 
         if (error) {
-            toast.error('Error al enviar el pedido')
+            toast.error('Error al enviar el pedido');
         } else {
-            toast.success('¡Pedido enviado correctamente!')
-            setIsModalOpen(false)
-            setCart([])
-            setName('')
-            setPhone('')
-            setDeliveryDate('')
-            setDeliveryTime('')
+            toast.success('¡Pedido enviado correctamente!');
+            setIsModalOpen(false);
+            setCart([]);
+            setName('');
+            setPhone('');
+            setDeliveryDate('');
+            setDeliveryTime('');
         }
-    }
+    };
+
 
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
@@ -80,31 +88,66 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                     <p className="text-gray-500 text-sm">No has agregado productos aún.</p>
                 ) : (
                     <>
-                        {cart.map((item) => (
+                        {cart.map((item, index) => (
                             <div
                                 key={item.id}
-                                className="flex justify-between items-center sm:gap-3 text-sm border border-orange-100 bg-orange-50 rounded-lg px-2 sm:px-4 py-2"
+                                className="flex flex-col gap-2 border border-orange-100 bg-orange-50 rounded-lg px-2 sm:px-4 py-2"
                             >
-                                <span className="font-medium text-orange-800 truncate min-w-10 max-w-24">
-                                    {item.name}
-                                </span>
-                                <span className="text-orange-700 font-semibold text-nowrap">
-                                    {formatCOP(item.price * item.quantity)} x{item.quantity}
-                                </span>
-                                <div className="flex gap-1">
-                                    <div className="flex border border-orange-300 rounded-md overflow-hidden">
+                                <div className="flex justify-between items-center w-full">
+                                    <span className="font-medium text-orange-800 truncate min-w-10 max-w-36">
+                                        {item.name}
+                                    </span>
+                                    <span className="text-orange-700 font-semibold text-nowrap">
+                                        {formatCOP(item.price * item.quantity)} x{item.quantity}
+                                    </span>
+                                </div>
+
+
+
+
+                                {item.showNotes && (
+                                    <input
+                                        type="text"
+                                        placeholder="Ej: sin cebolla"
+                                        value={item.notes || ''}
+                                        onChange={(e) => {
+                                            const updatedCart = [...cart]
+                                            updatedCart[index] = { ...item, notes: e.target.value }
+                                            setCart(updatedCart)
+                                        }}
+                                        className="w-full text-sm text-orange-800 bg-white border border-orange-300 rounded-md px-3 py-2"
+                                    />
+                                )}
+
+                                <div className="flex  items-center justify-end gap-1 w-full">
+                                    <div className="flex justify-between border w-full border-orange-300 rounded-md overflow-hidden">
                                         <Button
-                                            onClick={() => updateCartItem(item.id, -1)}
-                                            className="py-1 cursor-pointer text-sm bg-orange-50 hover:bg-orange-100 text-orange-700"
+                                            onClick={() => {
+                                                const updatedCart = [...cart];
+                                                updatedCart[index] = item.showNotes
+                                                    ? { ...item, showNotes: false, notes: '' } // cerrar y borrar nota
+                                                    : { ...item, showNotes: true };             // abrir nota
+                                                setCart(updatedCart);
+                                            }}
+                                            className="rounded-none border-r border-orange-300 shadow-none text-xs text-orange-600 bg-orange-100 hover:bg-orange-200"
                                         >
-                                            <Minus />
+                                            {item.showNotes ? 'Borrar nota' : 'Añadir nota'}
                                         </Button>
-                                        <Button
-                                            onClick={() => updateCartItem(item.id, 1)}
-                                            className="py-1 cursor-pointer text-sm bg-orange-50 hover:bg-orange-100 text-orange-700"
-                                        >
-                                            <Plus />
-                                        </Button>
+
+                                        <div>
+                                            <Button
+                                                onClick={() => updateCartItem(item.id, -1)}
+                                                className="rounded-none shadow-none py-1 cursor-pointer text-sm bg-orange-50 hover:bg-orange-100 text-orange-700"
+                                            >
+                                                <Minus />
+                                            </Button>
+                                            <Button
+                                                onClick={() => updateCartItem(item.id, 1)}
+                                                className="rounded-none shadow-none py-1 cursor-pointer text-sm bg-orange-50 hover:bg-orange-100 text-orange-700"
+                                            >
+                                                <Plus />
+                                            </Button>
+                                        </div>
                                     </div>
                                     <Button
                                         onClick={() => removeItem(item.id)}
@@ -115,6 +158,9 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                                 </div>
                             </div>
                         ))}
+
+
+
                         <div className="flex justify-between items-center text-base font-semibold text-orange-700 border-t pt-3 mt-3">
                             <span>Total:</span>
                             <span>{formatCOP(total)}</span>
@@ -175,13 +221,33 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
 
                 <LocationPicker location={location} setLocation={setLocation} />
 
+                {!location && (
+                    <Button
+                        type="button"
+                        onClick={() => {
+                            navigator.geolocation.getCurrentPosition(
+                                ({ coords }) => {
+                                    setLocation(`${coords.latitude},${coords.longitude}`);
+                                    toast.success('Ubicación actualizada');
+                                },
+                                () => toast.error('No se pudo obtener tu ubicación. Asegúrate de dar permisos.')
+                            );
+                        }}
+                        className="w-full bg-orange-100 hover:bg-orange-200 text-orange-600 font-semibold"
+                    >
+                        Activar ubicación
+                    </Button>
+                )}
+
+
                 <Button
-                    className="w-full bg-orange-500 cursor-pointer hover:bg-orange-600 text-white font-bold"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold"
                     onClick={handleSubmit}
-                    disabled={cart.length === 0 || !name || !phone}
+                    disabled={!name || !phone || !location || !deliveryDate || !deliveryTime || cart.length === 0}
                 >
                     Confirmar pedido
                 </Button>
+
             </div>
         </div>
     )
@@ -207,7 +273,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                     onClick={() => setIsModalOpen(true)}
                     className="bg-orange-400 hover:bg-orange-600 text-white font-bold rounded-md px-6 py-3 shadow-lg"
                 >
-                    <ShoppingCart /> {cart.length > 1 ? 'Mis Pedidos' : 'Mi Pedido'} {cart.length > 0 ? cart.length : ''}
+                    <ShoppingCart /> {cart.length !== 1 ? 'Mis Pedidos' : 'Mi Pedido'} {cart.length > 0 ? cart.length : ''}
                 </Button>
             </div>
 
