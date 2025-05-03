@@ -15,6 +15,9 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const [location, setLocation] = useState('')
+    const [deliveryDate, setDeliveryDate] = useState('')
+    const [deliveryTime, setDeliveryTime] = useState('')
+
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     useEffect(() => {
@@ -44,6 +47,8 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
             phone,
             location,
             items: cart,
+            date: deliveryDate,
+            time: deliveryTime
         })
 
         if (error) {
@@ -129,6 +134,19 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                     onChange={(e) => setPhone(e.target.value)}
                     className="bg-orange-50"
                 />
+                <Input
+                    type="date"
+                    value={deliveryDate}
+                    onChange={(e) => setDeliveryDate(e.target.value)}
+                    className="bg-orange-50"
+                />
+                <Input
+                    type="time"
+                    value={deliveryTime}
+                    onChange={(e) => setDeliveryTime(e.target.value)}
+                    className="bg-orange-50"
+                />
+
                 <LocationPicker location={location} setLocation={setLocation} />
 
                 <Button
