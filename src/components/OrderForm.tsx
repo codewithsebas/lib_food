@@ -139,6 +139,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                     value={deliveryDate}
                     onChange={(e) => setDeliveryDate(e.target.value)}
                     className="bg-orange-50"
+                    min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
                 />
                 <Input
                     type="time"
