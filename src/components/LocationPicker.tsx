@@ -79,11 +79,14 @@ export function LocationPicker({
         // Check if location exists in localStorage and use it if available
         const savedLocation = localStorage.getItem('userLocation')
         if (savedLocation) {
+            const parsed = parseLocation(savedLocation)
             setLocation(savedLocation)
-            setPosition(parseLocation(savedLocation))
+            setPosition(parsed)
+            fetchAddress(parsed.lat, parsed.lng)
         } else if (isLoaded && !location) {
             fetchUserLocation() // Fallback to fetching the user location
         }
+
     }, [isLoaded, location, fetchUserLocation, setLocation])
 
     const handleOpenMap = () => {

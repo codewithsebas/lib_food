@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { OrderFormProps } from '@/types/types'
-import { MapPinHouse, Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react'
+import { MapPinHouse, Minus, Plus, ShoppingCart, Trash2, X } from 'lucide-react'
 import { formatCOP } from '@/lib/utils/formatCurrency'
 import { supabase } from '@/lib/supabase/supabase'
 import { toast } from 'sonner'
@@ -62,7 +62,10 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
     const FormContent = (
-        <div className="bg-white flex flex-col gap-4 w-full p-4 sm:p-6 rounded-2xl shadow-md border border-gray-200">
+        <div className="relative bg-white flex flex-col gap-4 w-full p-4 sm:p-6 rounded-2xl shadow-md border border-gray-200">
+            <button className='absolute top-3 right-3 flex sm:hidden text-orange-500' onClick={() => setIsModalOpen(false)}>
+                <X />
+            </button>
             <h2 className="text-2xl font-semibold text-orange-500 flex gap-4 items-center">
                 <ShoppingCart /> Tu Pedido
             </h2>
@@ -120,33 +123,50 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
             </h2>
 
             <div className="space-y-3">
-                <Input
-                    type='text'
-                    placeholder="Nombres completos"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="bg-orange-50"
-                />
-                <Input
-                    type='number'
-                    placeholder="Número de Celular"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="bg-orange-50"
-                />
-                <Input
-                    type="date"
-                    value={deliveryDate}
-                    onChange={(e) => setDeliveryDate(e.target.value)}
-                    className="bg-orange-50"
-                    min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
-                />
-                <Input
-                    type="time"
-                    value={deliveryTime}
-                    onChange={(e) => setDeliveryTime(e.target.value)}
-                    className="bg-orange-50"
-                />
+                <div className="space-y-3">
+                    <div className="space-y-2">
+                        <label className="text-sm text-gray-600">Nombres completos</label>
+                        <Input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="bg-orange-50"
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm text-gray-600">Número de Celular</label>
+                        <Input
+                            type="number"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            className="bg-orange-50"
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm text-gray-600">Fecha de entrega</label>
+                        <Input
+                            type="date"
+                            value={deliveryDate}
+                            onChange={(e) => setDeliveryDate(e.target.value)}
+                            className="bg-orange-50"
+                            min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm text-gray-600">Hora de entrega</label>
+                        <Input
+                            type="time"
+                            value={deliveryTime}
+                            onChange={(e) => setDeliveryTime(e.target.value)}
+                            className="bg-orange-50"
+                        />
+                    </div>
+                </div>
+
+
 
                 <LocationPicker location={location} setLocation={setLocation} />
 
