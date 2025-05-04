@@ -10,7 +10,7 @@ import Image from "next/image"
 export function FoodCard({ item, onAdd, count = 0 }: { item: FoodItem, onAdd: () => void, count?: number }) {
 
     return (
-        <Card className="transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl cursor-pointer py-0 bg-white rounded-none sm:rounded-lg border-0">
+        <Card className="transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl cursor-pointer py-0 bg-white rounded-none overflow-hidden sm:rounded-lg border-0">
 
             <div className="flex flex-col justify-between h-full">
                 <div className="relative overflow-hidden sm:rounded-lg sm:rounded-b-none min-h-80 max-h-80">
@@ -24,21 +24,23 @@ export function FoodCard({ item, onAdd, count = 0 }: { item: FoodItem, onAdd: ()
                         className="w-full h-full object-cover transform transition-all duration-300 hover:scale-105"
                     />
                 </div>
-                <div className="p-4">
-                    <CardTitle className="text-2xl font-semibold text-orange-600">{item.name}</CardTitle>
-                    <p className="text-gray-600 text-sm mb-2">{item.description}</p>
+                <div className="p-0">
+                    <div className="px-4 pb-0 pt-2 flex flex-col gap-1">
+                        <CardTitle className="text-2xl font-semibold text-orange-600">{item.name}</CardTitle>
+                        <p className="text-gray-600 text-sm mb-2">{item.description}</p>
 
-                    <div className="text-sm font-medium text-orange-700">
-                        <span className="block mb-2 font-semibold">Ingredientes:</span>
-                        <ul className="list-disc pl-5 grid grid-rows-4 grid-flow-col text-gray-600">
-                            {item.ingredients.map((ingredient, index) => (
-                                <li key={index}>{ingredient}</li>
-                            ))}
-                        </ul>
+                        <div className="text-sm font-medium text-orange-700">
+                            <span className="block mb-2 font-semibold  border-b border-gray-100 pb-2">Ingredientes:</span>
+                            <ul className="list-none grid grid-rows-4 grid-flow-col text-gray-600">
+                                {item.ingredients.map((ingredient, index) => (
+                                    <li key={index}>{ingredient}</li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
 
-                    <div className="flex justify-between items-center mt-4">
-                        <p className="text-lg font-bold text-orange-800">{formatCOP(item.price)}</p>
+                    <div className="flex justify-between items-center mt-4 bg-amber-100 p-3">
+                        <p className="text-xl font-bold text-orange-900 ps-2">{formatCOP(item.price)}</p>
                         <Button
                             onClick={onAdd}
                             className="bg-orange-500 cursor-pointer text-white py-2 px-6 rounded-md hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"

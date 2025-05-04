@@ -129,7 +129,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                                                     : { ...item, showNotes: true };             // abrir nota
                                                 setCart(updatedCart);
                                             }}
-                                            className="rounded-none border-r border-orange-300 shadow-none text-xs text-orange-600 bg-orange-100 hover:bg-orange-200"
+                                            className="rounded-none border-r border-orange-300 cursor-pointer shadow-none text-xs text-orange-600 bg-orange-100 hover:bg-orange-200"
                                         >
                                             {item.showNotes ? 'Borrar nota' : 'Añadir nota'}
                                         </Button>
@@ -174,7 +174,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
             </h2>
 
             <div className="space-y-3">
-                <div className="space-y-3">
+                <div className="space-y-2">
                     <div className="space-y-2">
                         <label className="text-sm text-gray-600">Nombres completos</label>
                         <Input
