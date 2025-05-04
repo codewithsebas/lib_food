@@ -37,7 +37,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
     }
 
     const handleSubmit = async () => {
-        if (!name || !phone || !location || !deliveryDate || !deliveryTime || !manualAddress || cart.length === 0) {
+        if (!name || !phone || !deliveryDate || !deliveryTime || !manualAddress || cart.length === 0) {
             toast.error('Por favor completa todos los campos');
             return;
         }
@@ -74,7 +74,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
     const FormContent = (
-        <div className="relative bg-white flex flex-col gap-4 w-full p-4 sm:p-6 rounded-2xl shadow-md border border-gray-200">
+        <div className="relative bg-white flex flex-col gap-4 w-full p-4 sm:p-6 rounded-lg shadow-md border border-gray-200">
             <button className='absolute top-3 right-3 flex sm:hidden text-orange-500' onClick={() => setIsModalOpen(false)}>
                 <X />
             </button>
@@ -226,7 +226,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                 <Button
                     className="w-full cursor-pointer bg-orange-500 hover:bg-orange-600 text-white font-bold"
                     onClick={handleSubmit}
-                    disabled={isSubmitting || !name || !phone || !location || !deliveryDate || !deliveryTime || cart.length === 0}
+                    disabled={isSubmitting || !name || !phone || !deliveryDate || !deliveryTime || !manualAddress || cart.length === 0}
                 >
                     {isSubmitting ? (<div className='flex items-center gap-2 '>Enviando... <LoaderCircle className="animate-spin" /></div>) : 'Confirmar pedido'}
                 </Button>

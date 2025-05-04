@@ -8,7 +8,6 @@ export interface FoodItem {
     notes: string
   }
   
-  
   export type CartItem = FoodItem & {
     quantity: number
     showNotes: boolean

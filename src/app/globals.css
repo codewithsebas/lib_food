@@ -91,3 +91,71 @@
 .sonner {
   z-index: 9999 !important;
 }
+
+/* Estilos generales */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+  gap: 20px;
+  animation: fadeIn 1s ease-out;
+}
+
+.loading-text {
+  font-size: 1.50rem;
+  font-weight: 600;
+  color: #333;
+  opacity: 0;
+  animation: fadeInText 1s ease-out forwards;
+}
+
+/* Animación para el texto */
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación del contenedor del ícono de carga */
+.hamburger-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: spinHamburger 2s linear infinite;
+}
+
+/* Animación para el ícono de Hamburger */
+@keyframes spinHamburger {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilos del ícono de Hamburger */
+.hamburger-icon {
+  color: #4a4a4a;
+}
+
+/* Efecto de desvanecimiento de la pantalla de carga */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
