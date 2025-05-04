@@ -18,18 +18,9 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
     const [deliveryDate, setDeliveryDate] = useState('')
     const [deliveryTime, setDeliveryTime] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false);
-
+    const [manualAddress, setManualAddress] = useState('');
 
     const [isModalOpen, setIsModalOpen] = useState(false)
-
-    useEffect(() => {
-        if (typeof window !== 'undefined' && 'geolocation' in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                ({ coords }) => setLocation(`${coords.latitude},${coords.longitude}`),
-                () => toast.error('No se pudo obtener tu ubicación')
-            );
-        }
-    }, []);
 
     const updateCartItem = (itemId: number, delta: number) => {
         setCart((prev) =>
@@ -46,7 +37,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
     }
 
     const handleSubmit = async () => {
-        if (!name || !phone || !location || !deliveryDate || !deliveryTime || cart.length === 0) {
+        if (!name || !phone || !location || !deliveryDate || !deliveryTime || !manualAddress || cart.length === 0) {
             toast.error('Por favor completa todos los campos');
             return;
         }
@@ -59,7 +50,8 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
             location,
             items: cart,
             date: deliveryDate,
-            time: deliveryTime
+            time: deliveryTime,
+            address: manualAddress,
         });
 
         setIsSubmitting(false);
@@ -225,35 +217,18 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                     </div>
                 </div>
 
-
-
-                <LocationPicker location={location} setLocation={setLocation} />
-
-                {!location && (
-                    <Button
-                        type="button"
-                        onClick={() => {
-                            navigator.geolocation.getCurrentPosition(
-                                ({ coords }) => {
-                                    setLocation(`${coords.latitude},${coords.longitude}`);
-                                    toast.success('Ubicación actualizada');
-                                },
-                                () => toast.error('No se pudo obtener tu ubicación. Asegúrate de dar permisos.')
-                            );
-                        }}
-                        className="w-full bg-orange-100 hover:bg-orange-200 text-orange-600 font-semibold"
-                    >
-                        Activar ubicación
-                    </Button>
-                )}
-
+                <LocationPicker
+                    location={location}
+                    setLocation={setLocation}
+                    setManualAddress={setManualAddress}
+                />
 
                 <Button
                     className="w-full cursor-pointer bg-orange-500 hover:bg-orange-600 text-white font-bold"
                     onClick={handleSubmit}
                     disabled={isSubmitting || !name || !phone || !location || !deliveryDate || !deliveryTime || cart.length === 0}
                 >
-                    {isSubmitting ? (<span className='flex items-center gap-2 '>Enviando... <LoaderCircle className="animate-spin" /></span>) : 'Confirmar pedido'}
+                    {isSubmitting ? (<div className='flex items-center gap-2 '>Enviando... <LoaderCircle className="animate-spin" /></div>) : 'Confirmar pedido'}
                 </Button>
 
 

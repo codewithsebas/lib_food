@@ -48,9 +48,9 @@ export function FoodCard({ item, onAdd, count = 0 }: { item: FoodItem, onAdd: ()
                             <ShoppingCart />
                             Agregar
                             {count > 0 && (
-                                <span className="bg-white text-orange-600 font-semibold w-5 h-5 flex items-center justify-center px-2 rounded-sm text-xs">
+                                <div className="bg-white text-orange-600 font-semibold w-5 h-5 flex items-center justify-center px-2 rounded-sm text-xs">
                                     {count}
-                                </span>
+                                </div>
                             )}
                         </Button>
 
