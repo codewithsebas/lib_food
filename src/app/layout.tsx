@@ -21,8 +21,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Lib Food | Hamburguesas caseras irresistibles en Líbano",
-  description: "Disfruta hamburguesas artesanales hechas con amor en Líbano. Ordena fácil, rápido y con todo el sabor de Lib Food.",
+  title: "LibFood | Hamburguesas caseras irresistibles en Líbano",
+  description: "Disfruta hamburguesas artesanales hechas con amor en Líbano. Ordena fácil, rápido y con todo el sabor de LibFood.",
 };
 
 export default function RootLayout({
