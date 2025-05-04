@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { OrderFormProps } from '@/types/types'
-import { MapPinHouse, Minus, Plus, ShoppingCart, Trash2, X } from 'lucide-react'
+import { LoaderCircle, MapPinHouse, Minus, Plus, ShoppingCart, Trash2, X } from 'lucide-react'
 import { formatCOP } from '@/lib/utils/formatCurrency'
 import { supabase } from '@/lib/supabase/supabase'
 import { toast } from 'sonner'
@@ -17,6 +17,8 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
     const [location, setLocation] = useState('')
     const [deliveryDate, setDeliveryDate] = useState('')
     const [deliveryTime, setDeliveryTime] = useState('')
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -49,6 +51,8 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
             return;
         }
 
+        setIsSubmitting(true);
+
         const { error } = await supabase.from('orders').insert({
             name,
             phone,
@@ -57,6 +61,8 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
             date: deliveryDate,
             time: deliveryTime
         });
+
+        setIsSubmitting(false);
 
         if (error) {
             toast.error('Error al enviar el pedido');
@@ -70,6 +76,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
             setDeliveryTime('');
         }
     };
+
 
 
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
@@ -202,8 +209,9 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                             value={deliveryDate}
                             onChange={(e) => setDeliveryDate(e.target.value)}
                             className="bg-orange-50"
-                            min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
+                            min={new Date().toISOString().split("T")[0]} // Establece la fecha mínima como hoy
                         />
+
                     </div>
 
                     <div className="space-y-2">
@@ -241,12 +249,13 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
 
 
                 <Button
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold"
+                    className="w-full cursor-pointer bg-orange-500 hover:bg-orange-600 text-white font-bold"
                     onClick={handleSubmit}
-                    disabled={!name || !phone || !location || !deliveryDate || !deliveryTime || cart.length === 0}
+                    disabled={isSubmitting || !name || !phone || !location || !deliveryDate || !deliveryTime || cart.length === 0}
                 >
-                    Confirmar pedido
+                    {isSubmitting ? (<span className='flex items-center gap-2 '>Enviando... <LoaderCircle className="animate-spin" /></span>) : 'Confirmar pedido'}
                 </Button>
+
 
             </div>
         </div>
