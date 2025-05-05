@@ -21,8 +21,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "LibFood | Hamburguesas caseras irresistibles en Líbano",
-  description: "Disfruta hamburguesas artesanales hechas con amor en Líbano. Ordena fácil, rápido y con todo el sabor de LibFood.",
+  title: "LibFood | Deliciosos Salpicones de Fruta | Refrescantes y Naturales",
+  description: "Disfruta de los mejores salpicones de fruta, frescos, saludables y llenos de sabor. ¡Haz tu pedido ahora y saborea la frescura de la fruta en cada bocado!",
 };
 
 export default function RootLayout({
