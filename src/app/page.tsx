@@ -10,65 +10,66 @@ import { Logo } from '@/components/Logo'
 const foodMenu = [
   {
     id: 1,
-    name: 'Hamburguesa Clásica',
-    price: 11000,
-    description: 'Deliciosa hamburguesa con carne jugosa, queso cheddar, lechuga fresca y tomate.',
-    ingredients: ['Carne artesanal', 'Queso cheddar', 'Lechuga', 'Tomate', 'Mayonesa', 'Pepinillos', 'Pan artesanal', 'Pimienta'],
-    imageUrl: 'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    name: 'Salpicón de Frutas - Mini',
+    price: 9000,
+    description: 'Una explosión de frescura en tamaño mini 🍍🍓 Ideal para calmar el antojo sin exceso. Perfecto como snack ligero y saludable.',
+    ingredients: [],
+    imageUrl: 'https://carolisterchefandgardener.com/wp-content/uploads/2023/06/salpicon-colombiano-scaled.jpg',
     showNotes: false,
     notes: ''
   },
   {
     id: 2,
-    name: 'Hamburguesa BBQ',
-    price: 13500,
-    description: 'Jugosa hamburguesa con queso derretido, cebolla caramelizada y salsa BBQ.',
-    ingredients: ['Carne artesanal', 'Queso', 'Cebolla caramelizada', 'Salsa BBQ', 'Kétchup', 'Pepinillos', 'Pan artesanal', 'Pimienta'],
-    imageUrl: 'https://images.unsplash.com/photo-1728776448564-761583fc8bfb?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    name: 'Salpicón de Frutas 10oz',
+    price: 11000,
+    description: 'El equilibrio perfecto entre sabor y frescura 🍓🥭 Nuestro tamaño clásico para disfrutar una mezcla vibrante de frutas tropicales con helado.',
+    ingredients: ['Piña', 'Papaya', 'Sandía', 'Mango', 'Manzana', 'Banano', 'Fresas', 'Uvas', 'Jugo de Sandía', 'Helado de Vainilla'],
+    imageUrl: 'https://lacascada.co/wp-content/uploads/2022/10/Salpicon-con-helado.jpg',
     showNotes: false,
     notes: ''
   },
   {
     id: 3,
-    name: 'Hamburguer huevo y aguacate',
-    price: 11000,
-    description: 'Hamburguesa con huevo frito, aguacate cremoso y queso fundido.',
-    ingredients: ['Carne artesanal', 'Huevo', 'Aguacate', 'Queso', 'Kétchup', 'Pepinillos', 'Pan artesanal', 'Pimienta'],
-    imageUrl: 'https://images.unsplash.com/photo-1609796632543-65cdda96651c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    name: 'Salpicón Mini con Helado - Grande',
+    price: 14000,
+    description: '¡El favorito para compartir o para los más fruteros! 🍉🍌 Una porción generosa llena de sabor, energía y frescura en cada cucharada.',
+    ingredients: ['Piña', 'Papaya', 'Sandía', 'Mango', 'Manzana', 'Banano', 'Fresas', 'Uvas', 'Jugo de Sandía', 'Helado de Vainilla'],
+    imageUrl: 'https://www.asohofrucol.com.co/img/comasano/7.jpg',
     showNotes: false,
     notes: ''
   },
   {
     id: 4,
-    name: 'Maracumango',
-    price: 8000,
-    description: 'Refrescante bebida de mango y maracuyá, perfecta para el calor.',
-    ingredients: ['Mango', 'Maracuyá', 'Azúcar', 'Hielo', 'Agua o soda', 'Limón', 'Leche condensada'],
-    imageUrl: 'https://images.unsplash.com/photo-1589581881796-05e8b66b8259?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    name: 'Salpicón con Helado 10oz',
+    price: 14000,
+    description: '¡El favorito para compartir o para los más fruteros! 🍉🍌 Una porción generosa llena de sabor, energía y frescura en cada cucharada.',
+    ingredients: ['Piña', 'Papaya', 'Sandía', 'Mango', 'Manzana', 'Banano', 'Fresas', 'Uvas', 'Jugo de Sandía', 'Helado de Vainilla'],
+    imageUrl: 'https://www.asohofrucol.com.co/img/comasano/7.jpg',
     showNotes: false,
     notes: ''
   },
   {
     id: 5,
-    name: 'Jugo Tropical',
-    price: 8500,
-    description: 'Refrescante jugo tropical con una mezcla de piña, mango y un toque de maracuyá.',
-    ingredients: ['Piña', 'Mango', 'Papaya', 'Naranja Natural', 'Maracuyá', 'Azúcar', 'Agua', 'Hielo picado'],
-    imageUrl: 'https://images.unsplash.com/photo-1576525384682-da7beb2be702?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    name: 'Salpicón con Helado y Gomitas Mini',
+    price: 14000,
+    description: '¡El favorito para compartir o para los más fruteros! 🍉🍌 Una porción generosa llena de sabor, energía y frescura en cada cucharada.',
+    ingredients: ['Piña', 'Papaya', 'Sandía', 'Mango', 'Manzana', 'Banano', 'Fresas', 'Uvas', 'Jugo de Sandía', 'Helado de Vainilla'],
+    imageUrl: 'https://www.asohofrucol.com.co/img/comasano/7.jpg',
     showNotes: false,
     notes: ''
   },
   {
     id: 6,
-    name: 'Licuado de Naranja',
-    price: 8000,
-    description: 'Delicioso licuado cremoso de naranja natural con leche, una mezcla suave y refrescante.',
-    ingredients: ['Naranja', 'Taza de Leche', 'Azúcar', 'Hielo'],
-    imageUrl: 'https://images.unsplash.com/photo-1531127989214-8739ff1b550e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    name: 'Salpicón con Helado y Gomitas 10oz',
+    price: 14000,
+    description: '¡El favorito para compartir o para los más fruteros! 🍉🍌 Una porción generosa llena de sabor, energía y frescura en cada cucharada.',
+    ingredients: ['Piña', 'Papaya', 'Sandía', 'Mango', 'Manzana', 'Banano', 'Fresas', 'Uvas', 'Jugo de Sandía', 'Helado de Vainilla'],
+    imageUrl: 'https://www.asohofrucol.com.co/img/comasano/7.jpg',
     showNotes: false,
     notes: ''
   }
 ];
+
 
 
 export default function Home() {

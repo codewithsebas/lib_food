@@ -5,7 +5,19 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
+        hostname: 'carolisterchefandgardener.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.asohofrucol.com.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lacascada.co'
+      },
+      {
+        protocol: 'https',
+        hostname: 'consueloc.com'
       }
     ]
   }
