@@ -81,7 +81,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
 
             <div className="space-y-2">
                 {cart.length === 0 ? (
-                    <p className="text-rose-500 text-sm">No has agregado productos aún.</p>
+                    <p className="text-gray-800 font-semibold text-sm">No has agregado productos aún.</p>
                 ) : (
                     <>
                         {cart.map((item, index) => (
@@ -166,7 +166,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
 
             <div className="space-y-3">
                 <div className="space-y-2">
-                    <label className="text-sm text-rose-600">Nombres completos</label>
+                    <label className="text-sm text-gray-800">Nombres completos</label>
                     <Input
                         type="text"
                         value={name}
@@ -176,7 +176,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-sm text-rose-600">Número de Celular</label>
+                    <label className="text-sm text-gray-800">Número de Celular</label>
                     <Input
                         type="number"
                         value={phone}
@@ -186,7 +186,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-sm text-rose-600">Fecha de entrega</label>
+                    <label className="text-sm text-gray-800">Fecha de entrega</label>
                     <Input
                         type="date"
                         value={deliveryDate}
@@ -197,7 +197,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-sm text-rose-600">Hora de entrega</label>
+                    <label className="text-sm text-gray-800">Hora de entrega</label>
                     <Input
                         type="time"
                         value={deliveryTime}

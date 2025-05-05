@@ -16,7 +16,6 @@ export function FoodCard({ item, onAdd, count = 0 }: { item: FoodItem, onAdd: ()
                     <Image
                         width={10000}
                         height={10000}
-                        priority
                         src={item.imageUrl}
                         alt={item.name}
                         className="w-full h-full object-cover transform transition-all duration-300 hover:scale-105"

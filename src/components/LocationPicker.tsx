@@ -106,7 +106,7 @@ export function LocationPicker({
             {!showMap ? (
                 <>
                     <div className="space-y-2">
-                        <label className="text-sm text-gray-600">Dirección</label>
+                        <label className="text-sm text-gray-800">Dirección</label>
                         <div className='flex items-center gap-1 w-full'>
                             <div className="w-full text-xs text-gray-700 bg-gray-50 p-2  rounded-md border border-gray-200 flex gap-2">
                                 <MapPinHouse size={20} /> <strong>{address}</strong>

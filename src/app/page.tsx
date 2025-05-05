@@ -98,7 +98,7 @@ export default function Home() {
 
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50 w-full mx-auto">
+    <main className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-pink-50 w-full mx-auto">
       <Logo />
       <div className='flex flex-col-reverse md:flex-row gap-6 justify-between  sm:p-6'>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 sm:gap-6 md:w-[80%]">
