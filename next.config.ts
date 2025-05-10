@@ -9,15 +9,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'www.asohofrucol.com.co',
-      },
-      {
-        protocol: 'https',
-        hostname: 'lacascada.co'
-      },
-      {
-        protocol: 'https',
-        hostname: 'consueloc.com'
+        hostname: 'res.cloudinary.com',
       }
     ]
   }

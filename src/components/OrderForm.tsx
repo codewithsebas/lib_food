@@ -154,7 +154,7 @@ export function OrderForm({ cart, setCart }: OrderFormProps) {
 
                         <div className="flex justify-between items-center text-base font-semibold text-pink-700 border-t pt-3 mt-3">
                             <span>Total:</span>
-                            <span>{formatCOP(total)}</span>
+                            <span className='font-bold text-xl bg-pink-100 px-3 rounded-sm py-1'>{formatCOP(total)}</span>
                         </div>
                     </>
                 )}

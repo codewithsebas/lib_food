@@ -11,7 +11,7 @@ const foodMenu = [
   {
     id: 1,
     name: 'Salpicón de Frutas - Mini',
-    price: 9000,
+    price: 7500,
     description: 'Una explosión de frescura en tamaño mini 🍍🍓 Ideal para calmar el antojo.',
     ingredients: [],
     imageUrl: 'https://carolisterchefandgardener.com/wp-content/uploads/2023/06/salpicon-colombiano-scaled.jpg',
@@ -20,51 +20,11 @@ const foodMenu = [
   },
   {
     id: 2,
-    name: 'Salpicón de Frutas 10oz',
-    price: 11000,
+    name: 'Salpicón de Frutas - Grande',
+    price: 9500,
     description: 'El equilibrio perfecto entre sabor y frescura 🍓🥭 Nuestro tamaño clásico para disfrutar una mezcla vibrante de frutas tropicales.',
     ingredients: [],
-    imageUrl: '',
-    showNotes: false,
-    notes: ''
-  },
-  {
-    id: 3,
-    name: 'Salpicón con Helado - Mini',
-    price: 14000,
-    description: '¡El favorito para compartir o para los más fruteros! 🍉🍌 Una porción generosa llena de sabor, energía y frescura en cada cucharada.',
-    ingredients: [],
-    imageUrl: '',
-    showNotes: false,
-    notes: ''
-  },
-  {
-    id: 4,
-    name: 'Salpicón con Helado 10oz',
-    price: 14000,
-    description: '¡El favorito para compartir o para los más fruteros! 🍉🍌 Una porción generosa llena de sabor, energía y frescura en cada cucharada.',
-    ingredients: ['Piña', 'Papaya', 'Sandía', 'Mango', 'Manzana', 'Banano', 'Fresas', 'Uvas', 'Jugo de Sandía', 'Helado de Vainilla'],
-    imageUrl: '',
-    showNotes: false,
-    notes: ''
-  },
-  {
-    id: 5,
-    name: 'Salpicón con Helado y Gomitas Mini',
-    price: 14000,
-    description: '¡Frescura y sabor en cada cucharada! Frutas, helado y gomitas, la combinación perfecta para disfrutar al máximo.🍉',
-    ingredients: [],
-    imageUrl: '',
-    showNotes: false,
-    notes: ''
-  },
-  {
-    id: 6,
-    name: 'Salpicón con Helado y Gomitas 10oz',
-    price: 14000,
-    description: 'El sabor de la frescura en cada bocado. Frutas, helado cremoso y gomitas en una porción ideal para compartir. 🍉',
-    ingredients: [],
-    imageUrl: '',
+    imageUrl: 'https://res.cloudinary.com/dovavvnjx/image/upload/v1746899158/ChatGPT_Image_May_10_2025_12_45_37_PM_ctyhpn.png',
     showNotes: false,
     notes: ''
   }

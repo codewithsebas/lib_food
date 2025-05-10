@@ -12,7 +12,7 @@ export function FoodCard({ item, onAdd, count = 0 }: { item: FoodItem, onAdd: ()
     return (
         <Card className="transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl cursor-pointer py-0 bg-white rounded-none overflow-hidden sm:rounded-lg border-0">
             <div className="flex flex-col justify-between h-full">
-                <div className="relative overflow-hidden sm:rounded-lg sm:rounded-b-none min-h-80 max-h-96">
+                <div className="relative overflow-hidden sm:rounded-lg sm:rounded-b-none h-full min-h-96">
                     <Image
                         width={10000}
                         height={10000}
